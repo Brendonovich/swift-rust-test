@@ -8,7 +8,7 @@ This module is to test calling Swift functionality from Rust. It's organised int
 
 `main.rs` contains an `extern "C"` section to reference external code as C. The function name should match the name declaired in Swift (similar to how Tauri does it for JS/TS). You then call that (unsafe) function in the main function and you can see the result.
 
-## 'tauri-swift': Swift Code
+## `tauri-swift`: Swift Code
 
 A Swift package complete with all the Xcode crud that comes along. Main bit to pay attention to is `Package.swift` which is what `swift_rs::build` uses to target and compile the code.
 
