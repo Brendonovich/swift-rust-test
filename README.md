@@ -1,6 +1,8 @@
 # create-svelte
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+This module is to test calling Swift functionality from Rust. It uses [swift-rs](https://github.com/Brendonovich/swift-rs) under the hood.
+
+It's organised into 2 parts:
 
 ## Creating a project
 
