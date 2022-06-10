@@ -1,6 +1,8 @@
 # swift_rust_test
 
-This module is to test calling Swift functionality from Rust. It's organised into 2 parts:
+This module is to test calling Swift functionality from Rust. It uses [swift-rs](https://github.com/Brendonovich/swift-rs) under the hood.
+
+It's organised into 2 parts:
 
 ## `src`: Rust Code
 
