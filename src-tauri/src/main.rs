@@ -8,7 +8,7 @@ use swift_rs::SRData;
 
 fn main() {
     tauri::Builder::default()
-        .invoke_handler(tauri::generate_handler![test, notification_test])
+        .invoke_handler(tauri::generate_handler![test])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }
@@ -16,27 +16,21 @@ fn main() {
 #[allow(dead_code)]
 #[tauri::command]
 fn test() -> String {
-    println!("I'm printing from Rust!");
+    println!("I'm printing from Rust");
 
-    unsafe {
-        let result = swift_test();
-        // let container: Container = serde_json::from_slice(&result).expect("Couldn't parse");
-        // println!(
-        //     "Here is my result that I received from the Swift function: {:#?}",
-        //     container
-        // );
-    };
+    let result = unsafe { swift_test() };
+    let container: Container = serde_json::from_slice(&result).expect("Couldn't parse");
+
+    println!(
+        "Here is my result that I received from the Swift function: {:#?}",
+        container
+    );
+
+    let string_result = format!("{:?}", container);
 
     // It seems like deallocation is messing something up
 
-    return "Hello".to_string();
-}
-
-#[tauri::command]
-fn notification_test() -> String {
-    let result = unsafe { is_permission_granted() };
-
-    return result.to_string();
+    return string_result;
 }
 
 #[derive(Deserialize, Debug)]
@@ -60,5 +54,4 @@ enum CustomEnum {
 
 extern "C" {
     fn swift_test() -> SRData;
-    fn is_permission_granted() -> bool;
 }
