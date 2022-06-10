@@ -8,17 +8,32 @@ use swift_rs::SRData;
 
 fn main() {
     tauri::Builder::default()
-        .invoke_handler(tauri::generate_handler![test])
+        .invoke_handler(tauri::generate_handler![
+            rust_test_bool,
+            rust_test_int,
+            rust_test_struct
+        ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }
 
-#[allow(dead_code)]
 #[tauri::command]
-fn test() -> String {
+fn rust_test_bool() -> String {
+    let result = unsafe { test_bool() };
+    return result.to_string();
+}
+
+#[tauri::command]
+fn rust_test_int() -> String {
+    let result = unsafe { test_int() };
+    return result.to_string();
+}
+
+#[tauri::command]
+fn rust_test_struct() -> String {
     println!("I'm printing from Rust");
 
-    let result = unsafe { swift_test() };
+    let result = unsafe { test_struct() };
     let container: Container = serde_json::from_slice(&result).expect("Couldn't parse");
 
     println!(
@@ -53,5 +68,7 @@ enum CustomEnum {
 }
 
 extern "C" {
-    fn swift_test() -> SRData;
+    fn test_bool() -> bool;
+    fn test_int() -> u8;
+    fn test_struct() -> SRData;
 }
