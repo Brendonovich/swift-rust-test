@@ -3,7 +3,7 @@ import Foundation
 import UserNotifications
 
 @_cdecl("swift_test")
-public func test() -> SRString {
+public func test() -> Int {
     print("I'm printing from Swift!")
     
     let container = Container(
@@ -17,7 +17,9 @@ public func test() -> SRString {
     let data = try! JSONEncoder().encode(container)
     let string = String(data: data, encoding: .utf8)!
     
-    return SRString("Hello")
+//    return false
+//    return SRString("Hello")
+    return 14
 }
 
 @_cdecl("is_permission_granted")

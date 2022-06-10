@@ -3,6 +3,8 @@
     windows_subsystem = "windows"
 )]
 
+use std::string;
+
 use serde::Deserialize;
 use swift_rs::types::SRString;
 
@@ -19,16 +21,19 @@ fn test() -> String {
     println!("I'm printing from Rust!");
 
     let sr_result = unsafe { swift_test() };
-    // let string_result = sr_result.to_string();
+    let string_result = sr_result.to_string();
+
     // let json: Container = serde_json::from_str(&string_result).expect("Couldn't parse");
+
     // println!(
     //     "Here is my result that I received from the Swift function: {:#?}",
     //     json
     // );
 
     // let formatted = format!("{:?}", json);
+    println!("{}", string_result);
 
-    return "Test".to_string();
+    return string_result;
 }
 
 #[tauri::command]
@@ -58,6 +63,6 @@ enum CustomEnum {
 }
 
 extern "C" {
-    fn swift_test() -> SRString;
+    fn swift_test() -> u16;
     fn is_permission_granted() -> SRString;
 }
