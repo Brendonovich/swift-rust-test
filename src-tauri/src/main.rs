@@ -3,10 +3,8 @@
     windows_subsystem = "windows"
 )]
 
-use std::string;
-
 use serde::Deserialize;
-use swift_rs::types::SRString;
+use swift_rs::SRData;
 
 fn main() {
     tauri::Builder::default()
@@ -20,20 +18,18 @@ fn main() {
 fn test() -> String {
     println!("I'm printing from Rust!");
 
-    let sr_result = unsafe { swift_test() };
-    let string_result = sr_result.to_string();
+    unsafe {
+        let result = swift_test();
+        // let container: Container = serde_json::from_slice(&result).expect("Couldn't parse");
+        // println!(
+        //     "Here is my result that I received from the Swift function: {:#?}",
+        //     container
+        // );
+    };
 
-    // let json: Container = serde_json::from_str(&string_result).expect("Couldn't parse");
+    // It seems like deallocation is messing something up
 
-    // println!(
-    //     "Here is my result that I received from the Swift function: {:#?}",
-    //     json
-    // );
-
-    // let formatted = format!("{:?}", json);
-    println!("{}", string_result);
-
-    return string_result;
+    return "Hello".to_string();
 }
 
 #[tauri::command]
@@ -63,6 +59,6 @@ enum CustomEnum {
 }
 
 extern "C" {
-    fn swift_test() -> u16;
-    fn is_permission_granted() -> SRString;
+    fn swift_test() -> SRData;
+    fn is_permission_granted() -> bool;
 }

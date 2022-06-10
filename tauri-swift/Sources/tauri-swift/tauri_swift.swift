@@ -3,8 +3,11 @@ import Foundation
 import UserNotifications
 
 @_cdecl("swift_test")
-public func test() -> Int {
-    print("I'm printing from Swift!")
+public func test() -> SRData {
+    
+    // Convert to a string via Codable
+    // Figure out how to pass those strings to Rust
+    // Decode them using Serde/serde-json in Rust
     
     let container = Container(
         passedBool: true,
@@ -15,25 +18,24 @@ public func test() -> Int {
     )
     
     let data = try! JSONEncoder().encode(container)
-    let string = String(data: data, encoding: .utf8)!
+    let array = Array(data)
     
-//    return false
-//    return SRString("Hello")
-    return 14
+    
+    return SRData(array)
 }
 
 @_cdecl("is_permission_granted")
-public func isPermissionGranted() -> SRString {
+public func isPermissionGranted() -> SRData {
     let center = UNUserNotificationCenter.current()
     
-    center.getNotificationSettings { settings in
-        print(settings.authorizationStatus)
-    }
+//    center.getNotificationSettings { settings in
+//        print(settings.authorizationStatus)
+//    }
     
     let data = try! JSONEncoder().encode(true)
-    let string = String(data: data, encoding: .utf8)!
+    let array = Array(data)
     
-    return SRString(string)
+    return SRData(array)
 }
 
 public struct Container: Codable {
