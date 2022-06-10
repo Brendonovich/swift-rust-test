@@ -17,7 +17,7 @@ public func test() -> SRString {
     let data = try! JSONEncoder().encode(container)
     let string = String(data: data, encoding: .utf8)!
     
-    return SRString(string)
+    return SRString("Hello")
 }
 
 @_cdecl("is_permission_granted")

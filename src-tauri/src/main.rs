@@ -17,6 +17,7 @@ fn main() {
 #[tauri::command]
 fn test() -> String {
     println!("I'm printing from Rust!");
+
     let sr_result = unsafe { swift_test() };
     // let string_result = sr_result.to_string();
     // let json: Container = serde_json::from_str(&string_result).expect("Couldn't parse");
