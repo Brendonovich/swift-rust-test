@@ -4,7 +4,7 @@
 )]
 
 use serde::Deserialize;
-use swift_rs::SRData;
+use swift_rs::SRArray;
 
 fn main() {
     tauri::Builder::default()
@@ -70,5 +70,5 @@ enum CustomEnum {
 extern "C" {
     fn test_bool() -> bool;
     fn test_int() -> u8;
-    fn test_struct() -> SRData;
+    fn test_struct() -> SRArray<u8>;
 }

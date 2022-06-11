@@ -18,7 +18,7 @@ public func test_struct() -> SRData {
     
     let container = Container(
         passedBool: true,
-        passedInt: 42,
+        passedInt: 41,
         passedNegativeInt: -42,
         passedString: "I'm a test string",
         passedEnum: .test(embeddedValue: 100)
@@ -26,7 +26,6 @@ public func test_struct() -> SRData {
     
     let data = try! JSONEncoder().encode(container)
     let array = Array(data)
-    
     
     return SRData(array)
 }

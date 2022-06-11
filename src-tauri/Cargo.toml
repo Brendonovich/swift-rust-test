@@ -8,19 +8,18 @@ repository = ""
 default-run = "app"
 edition = "2021"
 rust-version = "1.57"
-build = "src/build.rs"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [build-dependencies]
 tauri-build = { version = "1.0.0-rc.12", features = [] }
-swift-rs = { version = "0.3.0", features = ["build"] }
+swift-rs = { path = "../../swift-rs-lorenzo", features = ["build"] }
 
 [dependencies]
 serde_json = "1.0"
 serde = { version = "1.0", features = ["derive"] }
 tauri = { version = "1.0.0-rc.14", features = ["api-all"] }
-swift-rs = { version = "0.3.0"}
+swift-rs = { path = "../../swift-rs-lorenzo"}
 
 [features]
 # by default Tauri runs in production mode
