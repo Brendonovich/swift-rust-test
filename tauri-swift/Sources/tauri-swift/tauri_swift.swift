@@ -1,16 +1,5 @@
 import SwiftRs
 import Foundation
-import UserNotifications
-
-@_cdecl("test_bool")
-public func test_bool() -> Bool {
-    true
-}
-
-@_cdecl("test_int")
-public func test_int() -> Int {
-    42
-}
 
 @_cdecl("test_struct")
 public func test_struct() -> SRData {
