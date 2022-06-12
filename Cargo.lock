@@ -6,6 +6,8 @@ version = 3
 name = "app"
 version = "0.1.0"
 dependencies = [
+ "serde",
+ "serde_json",
  "swift-rs",
 ]
 
@@ -79,12 +81,22 @@ dependencies = [
 [[package]]
 name = "swift-rs"
 version = "0.3.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "d5e476e124c8144f9ad77f0ea703995b55332cb47e97cbce63853dfda8a8d409"
+source = "git+https://github.com/Brendonovich/swift-rs?branch=autorelease#1485706f78e8256c20b8ad950dd3abb684789cdd"
 dependencies = [
  "base64",
  "serde",
  "serde_json",
+ "swift-rs-macros",
+]
+
+[[package]]
+name = "swift-rs-macros"
+version = "0.1.0"
+source = "git+https://github.com/Brendonovich/swift-rs?branch=autorelease#1485706f78e8256c20b8ad950dd3abb684789cdd"
+dependencies = [
+ "proc-macro2",
+ "quote",
+ "syn",
 ]
 
 [[package]]
